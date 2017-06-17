@@ -9,7 +9,7 @@ public class Floor : MonoBehaviour
     public ParticleSystem explosion;
     public string gameplayLevelName;
 
-    // Use this for initialization
+    // Use this for initialization XD
     void Start ()
     {
         missedItems = 0;	
