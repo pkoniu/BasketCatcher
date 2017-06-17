@@ -22,6 +22,8 @@ public class Floor : MonoBehaviour
 	}
 
     void OnCollisionEnter(Collision collision) {
+        
+
         missedItems++;
 
         if(missedItems == 10)
