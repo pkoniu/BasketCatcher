@@ -1273,7 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2559aa8e65de29b4f8ab4d595298b528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplayLevelName: scene_1_PKonior
+  gameplayLevelName: gameplay_PKonior
   newGameButton: {fileID: 1873235030}
   quitGameButton: {fileID: 136192716}
 --- !u!1 &1873235028
