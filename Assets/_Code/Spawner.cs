@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//PatrykKonior
+
 public class Spawner : MonoBehaviour {
     public Primitive[] primitivePrefabs;
     public int spawnInterval;
@@ -11,11 +13,6 @@ public class Spawner : MonoBehaviour {
 	void Start () {
         spawnRange = new Vector2(4, 4);
         StartCoroutine(SpawnCor(spawnInterval));
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
 	}
 
     private IEnumerator SpawnCor(float delay) {

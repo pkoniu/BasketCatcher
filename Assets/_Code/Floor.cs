@@ -1,41 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
+//PatrykKonior
 
 public class Floor : MonoBehaviour
 {
-    private int missedItems;
-    public ParticleSystem explosion;
-    public string gameplayLevelName;
 
-    // Use this for initialization XD
-    void Start ()
+    public ParticleSystem fxPrefab;
+
+    ScoreManager scoreManager;
+
+    private void Start()
     {
-        missedItems = 0;	
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        scoreManager = FindObjectOfType<ScoreManager>();
+    }
+
+    void OnCollisionEnter(Collision col)
     {
-		
-	}
-
-    void OnCollisionEnter(Collision collision) {
-        
-
-        missedItems++;
-
-        if(missedItems == 10)
-        {
-            SceneManager.LoadScene(gameplayLevelName);
-        }
-
-        GameObject collisionWith = collision.gameObject;
-        Transform collisionTransform = collisionWith.transform;
-        Vector3 explosionPosition = new Vector3(collisionTransform.position.x, collisionTransform.position.y, collisionTransform.position.z);
-        ParticleSystem instantiatedExplosion = Instantiate(explosion, explosionPosition, Quaternion.Euler(-90, 0, 0));
-        Destroy(instantiatedExplosion, 5);
-        Destroy(collisionWith);
+        var fx = Instantiate(fxPrefab, col.transform.position, Quaternion.Euler(-90, 0, 0));
+        Destroy(fx.gameObject, 1f);
+        Destroy(col.gameObject);
+        scoreManager.LoseLife();
     }
 }

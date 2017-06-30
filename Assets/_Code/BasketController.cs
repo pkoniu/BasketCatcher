@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//PatrykKonior
+
 public class BasketController : MonoBehaviour
 {
     public float speed;
@@ -14,8 +16,8 @@ public class BasketController : MonoBehaviour
 	void Start ()
     {
         scoreManager = GameObject.FindObjectOfType<ScoreManager>();
-        speed = 2.5f;
-        movementRange = new Vector2(4, 4);
+        speed = 7.5f;
+        movementRange = new Vector2(6, 6);
 	}
 	
 	// Update is called once per frame

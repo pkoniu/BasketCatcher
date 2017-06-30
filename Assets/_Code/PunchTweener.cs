@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+//PatrykKonior
+
 [CreateAssetMenu]
 public class PunchTweener : AbstractTweener
 {

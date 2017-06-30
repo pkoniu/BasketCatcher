@@ -1,33 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-//PKonior
-public class MainMenu : MonoBehaviour {
-    public string gameplayLevelName;
+//PatrykKonior
+
+public class MainMenu : MonoBehaviour
+{
     public Button newGameButton;
     public Button quitGameButton;
 
-	// Use this for initialization
-	void Start () {
-        newGameButton.onClick.AddListener(NewGameButtonHandler);
-        quitGameButton.onClick.AddListener(QuitGameButtonHandler);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void NewGameButtonHandler()
+    void Awake()
     {
-        SceneManager.LoadScene(gameplayLevelName);
-    }
-
-    void QuitGameButtonHandler()
-    {
-        Application.Quit();
+        newGameButton.onClick.AddListener(SceneSwitcher.LoadGameplay);
+        quitGameButton.onClick.AddListener(Application.Quit);
     }
 }

@@ -1,51 +1,104 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using System.IO;
 
-public class HighScoresScreen : MonoBehaviour {
-    [Header("Prefabs")]
-    public TableRow highScoreTableRow;
+//PatrykKonior
 
-    [Header("Internal Refs")]
+public class HighScoresScreen : MonoBehaviour
+{
+    public TableRow tableRowPrefab;
     public Button newGameButton;
     public Button menuButton;
-
-    public Transform highScoreTable;
-
-    public HighScoreCollection highScores;
-
     public NewHighScoreOverlay newHighScoreOverlay;
+    public Transform table;
 
-    // Use this for initialization
-    void Start () {
+    BasketCatcherCore basketCatcherCore;
+    const string HIGHSCORES_FILENAME = "highscores.json";
+    HighScoreCollection highScoreCollection;
+    int newHighScore;
+
+    void Start()
+    {
         newHighScoreOverlay.gameObject.SetActive(false);
-        newHighScoreOverlay.Show(123, NameSubmitted);
-        LoadTable();
-	}
+        newGameButton.onClick.AddListener(SceneSwitcher.LoadGameplay);
+        menuButton.onClick.AddListener(SceneSwitcher.LoadMainMenu);
+        table.gameObject.SetActive(false);
+
+        basketCatcherCore = BasketCatcherCore.instance;
+        newGameButton.gameObject.SetActive(basketCatcherCore.justLost);
+
+        LoadHighScores();
+
+        if (basketCatcherCore.justLost)
+        {
+            newHighScore = BasketCatcherCore.instance.lastScore;
+
+            var minRecordScore = 0;
+            if (highScoreCollection.records.Count >= 10)
+            {
+                minRecordScore = highScoreCollection.records.Select(x => x.score).Min();
+            }
+
+            if (newHighScore > minRecordScore)
+            {
+                newHighScoreOverlay.Show(newHighScore, NameSubmitted);
+            }
+            else
+            {
+                LoadTable();
+            }
+            basketCatcherCore.ConsumeScore();
+        }
+        else
+        {
+            LoadTable();
+        }
+    }
+
+    public void LoadHighScores()
+    {
+        var p = MakePath();
+        if (File.Exists(p))
+        {
+            highScoreCollection = JsonUtility.FromJson<HighScoreCollection>(File.ReadAllText(p));
+        }
+        else
+        {
+            highScoreCollection = new HighScoreCollection();
+            highScoreCollection.records = new List<HighScoreRecord>();
+        }
+    }
 
     public void NameSubmitted(string name)
     {
-        highScores.records.Add(new HighScoreRecord() { name = name, score = 123 });
-        highScores.records = highScores.records.OrderByDescending(x => x.score).Take(10).ToList();
-        //SaveHighScores();
+        highScoreCollection.records.Add(new HighScoreRecord() { name = name, score = newHighScore });
+        highScoreCollection.records = highScoreCollection.records.OrderByDescending(x => x.score).Take(10).ToList();
+        SaveHighScores();
         LoadTable();
     }
 
-    private void LoadTable()
+    public void SaveHighScores()
     {
-        highScoreTable.gameObject.SetActive(true);
-        foreach (var hsr in highScores.records)
+        File.WriteAllText(MakePath(), JsonUtility.ToJson(highScoreCollection, true));
+    }
+
+    public void LoadTable()
+    {
+        if (highScoreCollection.records.Count > 0)
+            table.gameObject.SetActive(true);
+        foreach (var hsr in highScoreCollection.records)
         {
             Debug.Log(hsr.name + " : " + hsr.score);
-            var ins = Instantiate(highScoreTableRow, highScoreTable) as TableRow;
+            var ins = Instantiate(tableRowPrefab, table) as TableRow;
             ins.Load(hsr.name, hsr.score);
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    string MakePath()
+    {
+        return Application.persistentDataPath + "/" + HIGHSCORES_FILENAME;
+    }
 }

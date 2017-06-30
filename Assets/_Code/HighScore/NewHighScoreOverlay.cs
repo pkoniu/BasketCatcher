@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+//PatrykKonior
+
 public class NewHighScoreOverlay : MonoBehaviour
 {
-
     public InputField input;
     public Text scoreLabel;
-
-    public Button submitNewHighScoreButton;
+    public Button okButton;
 
     System.Action<string> callback;
 
@@ -20,7 +20,7 @@ public class NewHighScoreOverlay : MonoBehaviour
         gameObject.SetActive(true);
         scoreLabel.text = score.ToString();
         this.callback = callback;
-        submitNewHighScoreButton.onClick.AddListener(Submit);
+        okButton.onClick.AddListener(Submit);
     }
 
     public void Submit()
@@ -28,5 +28,4 @@ public class NewHighScoreOverlay : MonoBehaviour
         callback(input.text);
         gameObject.SetActive(false);
     }
-
 }

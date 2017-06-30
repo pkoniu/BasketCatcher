@@ -1,54 +1,63 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Linq;
+
+//PatrykKonior
 
 public class HUD : MonoBehaviour
 {
-    public Text scoreLabel;
-    private ScoreManager scoreManager;
+
+    ScoreManager scoreManager;
+
+    [SerializeField]
+    Text text;
+
+    [SerializeField]
+    Text livesText;
+
+    [SerializeField]
+    Button backButton;
+
     public AbstractTweener tweener;
 
-    // Use this for initialization
-    void Start ()
+    void Awake()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
-    private void UpdateScore(int score)
-    {
-        //scoreLabel.transform.DOPunchScale(new Vector3(1.2f,1.2f,1.2f), 0.3f, 1, 0);
-        if (tweener)
-        {
-            tweener.Tween(scoreLabel.transform);
-        }
-
-        scoreLabel.text = "PKonior, Score: " + score.ToString();
+        scoreManager = FindObjectOfType<ScoreManager>();
+        backButton.onClick.AddListener(BackButtonHandler);
     }
 
-    private void Awake()
+    private void BackButtonHandler()
     {
-        scoreManager = GameObject.FindObjectOfType<ScoreManager>();
+        SceneSwitcher.LoadMainMenu();
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
-        scoreManager.ScoreUpdatedEvent += ScoreChangedEventHandler;
-    }
-
-    private void OnDisable()
-    {
-        scoreManager.ScoreUpdatedEvent -= ScoreChangedEventHandler;
-    }
-
-    void ScoreChangedEventHandler(int newScore)
-    {
+        scoreManager.ScoreUpdatedEvent += UpdateScore;
+        scoreManager.LivesUpdatedEvent += UpdateLives;
         UpdateScore(scoreManager.GetTotalScore());
+        UpdateLives(scoreManager.lives);
+    }
+
+    void OnDisable()
+    {
+        scoreManager.ScoreUpdatedEvent -= UpdateScore;
+        scoreManager.LivesUpdatedEvent -= UpdateLives;
+    }
+
+    private void UpdateLives(int lives)
+    {
+        livesText.text = "Lives: " + String.Concat(Enumerable.Repeat("♥", lives).ToArray());
+    }
+
+    void UpdateScore(int score)
+    {
+        text.text = "Score: " + score;
+        if (tweener)
+            tweener.Tween(text.transform);
     }
 }

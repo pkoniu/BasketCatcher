@@ -635,7 +635,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4440065780884296, guid: 392a686e78d42024092a07c028b89f0e, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 392a686e78d42024092a07c028b89f0e, type: 2}
@@ -944,15 +944,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 576058345}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 21.78345}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 23.807049}
+  m_LocalScale: {x: 1.0928962, y: 1.0928962, z: 1.0928962}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1863662908}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 636.59705, y: 307.33597}
+  m_AnchoredPosition: {x: -7.5442505, y: 35.88629}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &687476065
@@ -2118,6 +2118,7 @@ RectTransform:
   m_Children:
   - {fileID: 178624845}
   - {fileID: 1975998405}
+  - {fileID: 576058350}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2137,18 +2138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee833f05f6d84e447a66330bd3976d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreTableRow: {fileID: 114702464325300214, guid: e6bd6b15d2491a1468d5c9400212dc65,
+  tableRowPrefab: {fileID: 114702464325300214, guid: e6bd6b15d2491a1468d5c9400212dc65,
     type: 2}
   newGameButton: {fileID: 782645445}
   menuButton: {fileID: 1848029411}
-  highScoreTable: {fileID: 576058350}
-  highScores:
-    records:
-    - name: player1
-      score: 120
-    - name: player2
-      score: 100
   newHighScoreOverlay: {fileID: 1975998406}
+  table: {fileID: 576058350}
 --- !u!1 &1975998404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,7 +2197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 687476067}
   scoreLabel: {fileID: 169064578}
-  submitNewHighScoreButton: {fileID: 2054839106}
+  okButton: {fileID: 2054839106}
 --- !u!1 &2016644663
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//PatrykKonior
+
 public class Primitive : MonoBehaviour
 {
     public int points;
@@ -10,11 +12,5 @@ public class Primitive : MonoBehaviour
 	void Start ()
     {
         points = 4;		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
 	}
 }

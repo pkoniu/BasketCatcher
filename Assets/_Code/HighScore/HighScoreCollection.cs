@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
+
+//PatrykKonior
+
 [System.Serializable]
 public class HighScoreRecord
 {
     public string name;
     public int score;
 }
+
 [System.Serializable]
 public class HighScoreCollection
 {

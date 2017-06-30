@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//PatrykKonior
+
 public class TableRow : MonoBehaviour
 {
 

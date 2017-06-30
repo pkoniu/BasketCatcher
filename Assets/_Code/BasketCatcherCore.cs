@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+
+//PatrykKonior
+
 public class BasketCatcherCore : MonoBehaviour
 {
     public static BasketCatcherCore instance
@@ -7,7 +10,7 @@ public class BasketCatcherCore : MonoBehaviour
     }
     public bool justLost { get; private set; }
     public int lastScore { get; private set; }
-    // Use this for initialization
+
     void Awake()
     {
         if (instance != null)
@@ -18,11 +21,13 @@ public class BasketCatcherCore : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
     public void SubmitScore(int score)
     {
         justLost = true;
         lastScore = score;
     }
+
     public void ConsumeScore()
     {
         justLost = false;
