@@ -568,16 +568,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 576058345}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 21.783447}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 23.807047}
+  m_LocalScale: {x: 1.0928962, y: 1.0928962, z: 1.0928962}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1863662908}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 636.59717, y: 307.336}
+  m_AnchoredPosition: {x: -7.5441284, y: 35.886353}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &782645443
@@ -1390,6 +1390,7 @@ GameObject:
   - component: {fileID: 1863662907}
   - component: {fileID: 1863662906}
   - component: {fileID: 1863662905}
+  - component: {fileID: 1863662909}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1468,6 +1469,7 @@ RectTransform:
   - {fileID: 2016644664}
   - {fileID: 1848029410}
   - {fileID: 782645444}
+  - {fileID: 576058350}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1476,6 +1478,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1863662909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1863662904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee833f05f6d84e447a66330bd3976d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScoreTableRow: {fileID: 114702464325300214, guid: e6bd6b15d2491a1468d5c9400212dc65,
+    type: 2}
+  newGameButton: {fileID: 782645445}
+  menuButton: {fileID: 1848029411}
+  highScoreTable: {fileID: 576058350}
+  highScores:
+    records:
+    - name: player1
+      score: 120
+    - name: player2
+      score: 100
 --- !u!1 &2016644663
 GameObject:
   m_ObjectHideFlags: 0

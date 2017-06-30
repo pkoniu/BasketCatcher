@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224726011170617900}
   - component: {fileID: 114961544686020638}
+  - component: {fileID: 114702464325300214}
   m_Layer: 0
   m_Name: TableRow
   m_TagString: Untagged
@@ -94,6 +95,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114702464325300214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1839774667839050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40836acae5408064488d2593fd9123bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameLabel: {fileID: 114944871775756362}
+  scoreLabel: {fileID: 114108822295497558}
 --- !u!114 &114944871775756362
 MonoBehaviour:
   m_ObjectHideFlags: 1
