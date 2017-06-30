@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,27 +16,36 @@ public class HighScoresScreen : MonoBehaviour {
 
     public HighScoreCollection highScores;
 
+    public NewHighScoreOverlay newHighScoreOverlay;
+
     // Use this for initialization
     void Start () {
-		foreach(var highScore in highScores.records)
-        {
-            Debug.Log(highScore.name + " " + highScore.score);
-            foreach (var hsr in highScores.records)
-            {
-                var ins = Instantiate(highScoreTableRow, highScoreTable) as TableRow;
-                ins.Load(hsr.name, hsr.score);
-            }
-            /*var newRow = Instantiate(highScoreTableRow);
-            Text txtRef = newRow.transform.GetChild(0).GetComponent<Text>();
-            txtRef.text = highScore.name;
-            Text txtRef2 = newRow.transform.GetChild(1).GetComponent<Text>();
-            txtRef2.text = highScore.score.ToString();
-            newRow.transform.SetParent(highScoreTable.transform);*/
-        }
+        newHighScoreOverlay.gameObject.SetActive(false);
+        newHighScoreOverlay.Show(123, NameSubmitted);
+        LoadTable();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void NameSubmitted(string name)
+    {
+        highScores.records.Add(new HighScoreRecord() { name = name, score = 123 });
+        highScores.records = highScores.records.OrderByDescending(x => x.score).Take(10).ToList();
+        //SaveHighScores();
+        LoadTable();
+    }
+
+    private void LoadTable()
+    {
+        highScoreTable.gameObject.SetActive(true);
+        foreach (var hsr in highScores.records)
+        {
+            Debug.Log(hsr.name + " : " + hsr.score);
+            var ins = Instantiate(highScoreTableRow, highScoreTable) as TableRow;
+            ins.Load(hsr.name, hsr.score);
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }
